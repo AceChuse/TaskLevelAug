@@ -46,13 +46,22 @@ $ python mini_auto.py
 ```
 
 #### Result
-The average accuracies (\%) with 95\% confidence intervals on CIFAR-FS. $^*$CIFAR-FS results from \cite{bertinetto2018meta}. $^\dagger$Result from \cite{lee2019meta}.
+The average accuracies (\%) with 95\% confidence intervals on CIFAR-FS. 
+
+| |  Method | 1-shot| 5-shot |
+| -----   | -----  | ----  |
+|MAML |  Base. | +RE |
+|R2-D2 |  7.21 | 6.73 |
+|ProtoNets |  6.41 | 5.66 |
+|M-SVM |  72.8 | 85.0 |
+|M-SVM (best) (our) |  5.53 | 5.13 |
+|R2-D2 (best) (our) |  5.31 | 4.89|
 
 
 ### Manual Operation
 #### CIFAR-FS
 Training:
-To train R2D2 on 5-way 5-shot 6-query train set, and to test on 5-way 5-shot 15-query validation set.
+To train R2-D2 on 5-way 5-shot 6-query train set, and to test on 5-way 5-shot 15-query validation set.
 ```bash
 python meta_e.py --dataset=CIFAR_FS --mode=train --epochs=60 --task_aug Rot90 --rot90_p=0.5 \ 
 --feat_aug=norm --start_epoch=0 -es=8000 -b=8 -pn=8 --lossf=cross_entropy --eps=0.0 --optim=SGD \ 
@@ -61,7 +70,7 @@ python meta_e.py --dataset=CIFAR_FS --mode=train --epochs=60 --task_aug Rot90 --
 ```
 
 Testing:
-To test R2D2 on 5-way 5-shot 15-query test set.
+To test R2-D2 on 5-way 5-shot 15-query test set.
 ```bash
 python meta_e.py --dataset=CIFAR_FS --mode=ens_test --epochs=60 --task_aug Rot90 --rot90_p=0.5 \
 --feat_aug=norm --start_epoch=0 -es=8000 -b=8 -pn=8 --lossf=cross_entropy --eps=0.0 --optim=SGD \
@@ -69,7 +78,7 @@ python meta_e.py --dataset=CIFAR_FS --mode=ens_test --epochs=60 --task_aug Rot90
 --trquery=6 --vshot=5 --vquery=15 --teshot=5 --tequery=15 --seed=0
 ```
 
-To test R2D2 on 5-way 1-shot 15-query test set.
+To test R2-D2 on 5-way 1-shot 15-query test set.
 ```bash
 python meta_e.py --dataset=CIFAR_FS --mode=ens_test --epochs=60 --task_aug Rot90 --rot90_p=0.5 \
 --feat_aug=norm --start_epoch=0 -es=8000 -b=8 -pn=8 --lossf=cross_entropy --eps=0.0 --optim=SGD \
@@ -78,7 +87,7 @@ python meta_e.py --dataset=CIFAR_FS --mode=ens_test --epochs=60 --task_aug Rot90
 ```
 
 Retraining:
-To train R2D2 on 5-way 5-shot 6-query train set and validation set.
+To train R2-D2 on 5-way 5-shot 6-query train set and validation set.
 ```bash
 python meta_e.py --dataset=CIFAR_FS --mode=final --epochs=60 --task_aug Rot90 --rot90_p=0.5 \
 --feat_aug=norm --start_epoch=0 -es=8000 -b=8 -pn=8 --lossf=cross_entropy --eps=0.0 --optim=SGD \
@@ -87,7 +96,7 @@ python meta_e.py --dataset=CIFAR_FS --mode=final --epochs=60 --task_aug Rot90 --
 ```
 
 Retesting:
-To test R2D2 on 5-way 5-shot 15-query test set.
+To test R2-D2 on 5-way 5-shot 15-query test set.
 ```bash
 python meta_e.py --dataset=CIFAR_FS --mode=ens_testac --epochs=60 --task_aug Rot90 --rot90_p=0.5 \
 --feat_aug=norm --start_epoch=0 -es=8000 -b=8 -pn=8 --lossf=cross_entropy --eps=0.0 --optim=SGD \
@@ -105,7 +114,7 @@ python meta_e.py --dataset=CIFAR_FS --mode=ens_testac --epochs=60 --task_aug Rot
 
 #### FC100
 Training:
-To train R2D2 on 5-way 5-shot 6-query train set, and to test on 5-way 5-shot 15-query validation set.
+To train R2-D2 on 5-way 5-shot 6-query train set, and to test on 5-way 5-shot 15-query validation set.
 ```bash
 python meta_e.py --dataset=FC100 --mode=train --epochs=60 --task_aug Rot90 --rot90_p=0.25 \
 --feat_aug=norm --start_epoch=0 -es=8000 -b=8 -pn=8 --lossf=cross_entropy --eps=0.0 --optim=SGD \
@@ -114,7 +123,7 @@ python meta_e.py --dataset=FC100 --mode=train --epochs=60 --task_aug Rot90 --rot
 ```
 
 Testing: 
-To test R2D2 on 5-way 5-shot 15-query test set.
+To test R2-D2 on 5-way 5-shot 15-query test set.
 ```bash
 python meta_e.py --dataset=FC100 --mode=ens_test --epochs=60 --task_aug Rot90 --rot90_p=0.25 \
 --feat_aug=norm --start_epoch=0 -es=8000 -b=8 -pn=8 --lossf=cross_entropy --eps=0.0 --optim=SGD \
@@ -122,7 +131,7 @@ python meta_e.py --dataset=FC100 --mode=ens_test --epochs=60 --task_aug Rot90 --
 --trquery=6 --vshot=5 --vquery=15 --teshot=5 --tequery=15 --seed=0
 ```
 
-To test R2D2 on 5-way 1-shot 15-query test set.
+To test R2-D2 on 5-way 1-shot 15-query test set.
 ```bash
 python meta_e.py --dataset=FC100 --mode=ens_test --epochs=60 --task_aug Rot90 --rot90_p=0.25 \
 --feat_aug=norm --start_epoch=0 -es=8000 -b=8 -pn=8 --lossf=cross_entropy --eps=0.0 --optim=SGD \
@@ -131,7 +140,7 @@ python meta_e.py --dataset=FC100 --mode=ens_test --epochs=60 --task_aug Rot90 --
 ```
 
 Retraining:
-To train R2D2 on 5-way 5-shot 6-query train set and validation set.
+To train R2-D2 on 5-way 5-shot 6-query train set and validation set.
 ```bash
 python meta_e.py --dataset=FC100 --mode=final --epochs=60 --task_aug Rot90 --rot90_p=0.25 \
 --feat_aug=norm --start_epoch=0 -es=8000 -b=8 -pn=8 --lossf=cross_entropy --eps=0.0 --optim=SGD \
@@ -140,7 +149,7 @@ python meta_e.py --dataset=FC100 --mode=final --epochs=60 --task_aug Rot90 --rot
 ```
 
 Retesting:
-To test R2D2 on 5-way 5-shot 15-query test set.
+To test R2-D2 on 5-way 5-shot 15-query test set.
 ```bash
 python meta_e.py --dataset=FC100 --mode=ens_testac --epochs=60 --task_aug Rot90 --rot90_p=0.25 \
 --feat_aug=norm --start_epoch=0 -es=8000 -b=8 -pn=8 --lossf=cross_entropy --eps=0.0 --optim=SGD \
@@ -148,7 +157,7 @@ python meta_e.py --dataset=FC100 --mode=ens_testac --epochs=60 --task_aug Rot90 
 --trquery=6 --vshot=5 --vquery=15 --teshot=5 --tequery=15 --seed=0
 ```
 
-To test R2D2 on 5-way 1-shot 15-query test set.
+To test R2-D2 on 5-way 1-shot 15-query test set.
 ```bash
 python meta_e.py --dataset=FC100 --mode=ens_testac --epochs=60 --task_aug Rot90 --rot90_p=0.25 \
 --feat_aug=norm --start_epoch=0 -es=8000 -b=8 -pn=8 --lossf=cross_entropy --eps=0.0 --optim=SGD \
@@ -158,7 +167,7 @@ python meta_e.py --dataset=FC100 --mode=ens_testac --epochs=60 --task_aug Rot90 
 
 #### MiniImageNet
 Training:
-To train R2D2 on 5-way 5-shot 6-query train set, and to test on 5-way 5-shot 15-query validation set.
+To train R2-D2 on 5-way 5-shot 6-query train set, and to test on 5-way 5-shot 15-query validation set.
 ```bash
 python meta_e.py --dataset=miniImageNet --mode=train --epochs=60 --task_aug Rot90 --rot90_p=0.25 \
 --feat_aug=norm --start_epoch=0 -es=8000 -b=8 -pn=2 --lossf=cross_entropy --eps=0.0 --optim=SGD \
@@ -167,7 +176,7 @@ python meta_e.py --dataset=miniImageNet --mode=train --epochs=60 --task_aug Rot9
 ```
 
 Testing:
-To test R2D2 on 5-way 5-shot 15-query test set.
+To test R2-D2 on 5-way 5-shot 15-query test set.
 ```bash
 python meta_e.py --dataset=miniImageNet --mode=ens_test --epochs=60 --task_aug Rot90 --rot90_p=0.25 \
 --feat_aug=norm --start_epoch=0 -es=8000 -b=8 -pn=2 --lossf=cross_entropy --eps=0.0 --optim=SGD \
@@ -175,7 +184,7 @@ python meta_e.py --dataset=miniImageNet --mode=ens_test --epochs=60 --task_aug R
 --trquery=6 --vshot=5 --vquery=15 --teshot=5 --tequery=15 --seed=0
 ```
 
-To test R2D2 on 5-way 1-shot 15-query test set.
+To test R2-D2 on 5-way 1-shot 15-query test set.
 ```bash
 python meta_e.py --dataset=miniImageNet --mode=ens_test --epochs=60 --task_aug Rot90 --rot90_p=0.25 \
 --feat_aug=norm --start_epoch=0 -es=8000 -b=8 -pn=2 --lossf=cross_entropy --eps=0.0 --optim=SGD \
@@ -184,7 +193,7 @@ python meta_e.py --dataset=miniImageNet --mode=ens_test --epochs=60 --task_aug R
 ```
 
 Retraining:
-To train R2D2 on 5-way 5-shot 6-query train set and validation set.
+To train R2-D2 on 5-way 5-shot 6-query train set and validation set.
 ```bash
 python meta_e.py --dataset=miniImageNet --mode=final --epochs=60 --task_aug Rot90 --rot90_p=0.25 \
 --feat_aug=norm --start_epoch=0 -es=8000 -b=8 -pn=2 --lossf=cross_entropy --eps=0.0 --optim=SGD \
@@ -193,7 +202,7 @@ python meta_e.py --dataset=miniImageNet --mode=final --epochs=60 --task_aug Rot9
 ```
 
 Retesting:
-To test R2D2 on 5-way 5-shot 15-query test set.
+To test R2-D2 on 5-way 5-shot 15-query test set.
 ```bash
 python meta_e.py --dataset=miniImageNet --mode=ens_testac --epochs=60 --task_aug Rot90 --rot90_p=0.25 \
 --feat_aug=norm --start_epoch=0 -es=8000 -b=8 -pn=2 --lossf=cross_entropy --eps=0.0 --optim=SGD \
@@ -201,7 +210,7 @@ python meta_e.py --dataset=miniImageNet --mode=ens_testac --epochs=60 --task_aug
 --trquery=6 --vshot=5 --vquery=15 --teshot=5 --tequery=15 --seed=0
 ```
 
-To test R2D2 on 5-way 1-shot 15-query test set.
+To test R2-D2 on 5-way 1-shot 15-query test set.
 ```bash
 python meta_e.py --dataset=miniImageNet --mode=ens_testac --epochs=60 --task_aug Rot90 --rot90_p=0.25 \
  --feat_aug=norm --start_epoch=0 -es=8000 -b=8 -pn=2 --lossf=cross_entropy --eps=0.0 --optim=SGD \
