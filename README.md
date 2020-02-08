@@ -48,14 +48,37 @@ $ python mini_auto.py
 #### Result
 The average accuracies (\%) with 95\% confidence intervals on CIFAR-FS. 
 
-| |  Method | 1-shot| 5-shot |
+|Method | 1-shot| 5-shot |
 | -----   | -----  | ----  |
-|MAML |  Base. | +RE |
-|R2-D2 |  7.21 | 6.73 |
-|ProtoNets |  6.41 | 5.66 |
+|MAML |  58.9 | 71.5 |
+|R2-D2 |  65.3 | 79.4 |
+|ProtoNets |  72.2 | 83.5 |
 |M-SVM |  72.8 | 85.0 |
-|M-SVM (best) (our) |  5.53 | 5.13 |
-|R2-D2 (best) (our) |  5.31 | 4.89|
+|M-SVM (best) (our) |  76.75 | **88.38** |
+|R2-D2 (best) (our) |  **77.66** | 88.33 |
+
+The average accuracies (\%) with 95\% confidence intervals on FC100. 
+
+|Method | 1-shot| 5-shot |
+| -----   | -----  | ----  |
+|TADAM |  40.1 | 56.1 |
+|ProtoNets |  37.5 | 52.5 |
+|MTL |  45.1 | 57.6 |
+|M-SVM |  47.2 | 62.5 |
+|M-SVM (best) (our) |  49.77 | 67.17 |
+|R2-D2 (best) (our) |  **51.35** | **67.66** |
+
+The average accuracies (\%) with 95\% confidence intervals on miniImageNet. 
+
+|Method | 1-shot| 5-shot |
+| -----   | -----  | ----  |
+| |  56.20 | 73.00 |
+|TADAM |  58.50 | 76.70 |
+|LEO |  61.76 | 77.59 |
+|ProtoNets |  59.25 | 75.60 |
+|M-SVM |  64.09 | 80.00 |
+|M-SVM (best) (our) |  65.38 | **82.13** |
+|R2-D2 (best) (our) |  **65.95** | 81.96 |
 
 
 ### Manual Operation
