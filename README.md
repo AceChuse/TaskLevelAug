@@ -27,39 +27,61 @@ This code requires the following:
     ```
 
 ### CIFAR-FS
+Automated training R2D2 on 5-way 5-shot 6-query and testing on 5-way 5-shot and 5-way 1-shot.
+```bash
+$ python CIFAR_FS_auto.py
+```
 
 #### Training
 To train R2D2 on 5-way 5-shot 6-query train set, and to test on 5-way 5-shot 15-query validation set.
 ```bash
-python meta_e.py --dataset=CIFAR_FS --mode=train --epochs=60 --task_aug Rot90 --rot90_p=0.5 --feat_aug=norm --start_epoch=0 -es=8000 -b=8 -pn=8 --lossf=cross_entropy --eps=0.0 --optim=SGD --lr_sche=lambda_epoch --lr=0.1 --wd=0.0005 --embedding=ResNet12 --head=R2D2 --kway=5 --trshot=5 --trquery=6 --vshot=5 --vquery=15 --teshot=1 --tequery=15 --seed=0
+python meta_e.py --dataset=CIFAR_FS --mode=train --epochs=60 --task_aug Rot90 --rot90_p=0.5 --feat_aug=norm \
+--start_epoch=0 -es=8000 -b=8 -pn=8 --lossf=cross_entropy --eps=0.0 --optim=SGD --lr_sche=lambda_epoch \
+--lr=0.1 --wd=0.0005 --embedding=ResNet12 --head=R2D2 --kway=5 --trshot=5 --trquery=6 --vshot=5 --vquery=15 \
+--teshot=1 --tequery=15 --seed=0
 ```
 
 #### Testing 
 To test R2D2 on 5-way 5-shot 15-query test set.
 ```bash
-python meta_e.py --dataset=CIFAR_FS --mode=ens_test --epochs=60 --task_aug Rot90 --rot90_p=0.5 --feat_aug=norm --start_epoch=0 -es=8000 -b=8 -pn=8 --lossf=cross_entropy --eps=0.0 --optim=SGD --lr_sche=lambda_epoch --lr=0.1 --wd=0.0005 --embedding=ResNet12 --head=R2D2 --kway=5 --trshot=5 --trquery=6 --vshot=5 --vquery=15 --teshot=5 --tequery=15 --seed=0
+python meta_e.py --dataset=CIFAR_FS --mode=ens_test --epochs=60 --task_aug Rot90 --rot90_p=0.5 --feat_aug=norm \
+--start_epoch=0 -es=8000 -b=8 -pn=8 --lossf=cross_entropy --eps=0.0 --optim=SGD --lr_sche=lambda_epoch \
+--lr=0.1 --wd=0.0005 --embedding=ResNet12 --head=R2D2 --kway=5 --trshot=5 --trquery=6 --vshot=5 --vquery=15 \
+--teshot=5 --tequery=15 --seed=0
 ```
 
 To test R2D2 on 5-way 1-shot 15-query test set.
 ```bash
-python meta_e.py --dataset=CIFAR_FS --mode=ens_test --epochs=60 --task_aug Rot90 --rot90_p=0.5 --feat_aug=norm --start_epoch=0 -es=8000 -b=8 -pn=8 --lossf=cross_entropy --eps=0.0 --optim=SGD --lr_sche=lambda_epoch --lr=0.1 --wd=0.0005 --embedding=ResNet12 --head=R2D2 --kway=5 --trshot=5 --trquery=6 --vshot=1 --vquery=15 --teshot=1 --tequery=15 --seed=0
+python meta_e.py --dataset=CIFAR_FS --mode=ens_test --epochs=60 --task_aug Rot90 --rot90_p=0.5 --feat_aug=norm \
+--start_epoch=0 -es=8000 -b=8 -pn=8 --lossf=cross_entropy --eps=0.0 --optim=SGD --lr_sche=lambda_epoch \
+--lr=0.1 --wd=0.0005 --embedding=ResNet12 --head=R2D2 --kway=5 --trshot=5 --trquery=6 --vshot=1 --vquery=15 \
+--teshot=1 --tequery=15 --seed=0
 ```
 
 #### Retraining
 To train R2D2 on 5-way 5-shot 6-query train set and validation set.
 ```bash
-python meta_e.py --dataset=CIFAR_FS --mode=final --epochs=60 --task_aug Rot90 --rot90_p=0.5 --feat_aug=norm --start_epoch=0 -es=8000 -b=8 -pn=8 --lossf=cross_entropy --eps=0.0 --optim=SGD --lr_sche=lambda_epoch --lr=0.1 --wd=0.0005 --embedding=ResNet12 --head=R2D2 --kway=5 --trshot=5 --trquery=6 --vshot=5 --vquery=15 --teshot=1 --tequery=15 --seed=0
+python meta_e.py --dataset=CIFAR_FS --mode=final --epochs=60 --task_aug Rot90 --rot90_p=0.5 --feat_aug=norm \
+--start_epoch=0 -es=8000 -b=8 -pn=8 --lossf=cross_entropy --eps=0.0 --optim=SGD --lr_sche=lambda_epoch \
+--lr=0.1 --wd=0.0005 --embedding=ResNet12 --head=R2D2 --kway=5 --trshot=5 --trquery=6 --vshot=5 --vquery=15 \
+--teshot=1 --tequery=15 --seed=0
 ```
 
 #### Retesting
 To test R2D2 on 5-way 5-shot 15-query test set.
 ```bash
-python meta_e.py --dataset=CIFAR_FS --mode=ens_testac --epochs=60 --task_aug Rot90 --rot90_p=0.5 --feat_aug=norm --start_epoch=0 -es=8000 -b=8 -pn=8 --lossf=cross_entropy --eps=0.0 --optim=SGD --lr_sche=lambda_epoch --lr=0.1 --wd=0.0005 --embedding=ResNet12 --head=R2D2 --kway=5 --trshot=5 --trquery=6 --vshot=5 --vquery=15 --teshot=5 --tequery=15 --seed=0
+python meta_e.py --dataset=CIFAR_FS --mode=ens_testac --epochs=60 --task_aug Rot90 --rot90_p=0.5 --feat_aug=norm \
+--start_epoch=0 -es=8000 -b=8 -pn=8 --lossf=cross_entropy --eps=0.0 --optim=SGD --lr_sche=lambda_epoch \
+--lr=0.1 --wd=0.0005 --embedding=ResNet12 --head=R2D2 --kway=5 --trshot=5 --trquery=6 --vshot=5 --vquery=15 \
+--teshot=5 --tequery=15 --seed=0
 ```
 
 To test R2D2 on 5-way 1-shot 15-query test set.
 ```bash
-python meta_e.py --dataset=CIFAR_FS --mode=ens_testac --epochs=60 --task_aug Rot90 --rot90_p=0.5 --feat_aug=norm --start_epoch=0 -es=8000 -b=8 -pn=8 --lossf=cross_entropy --eps=0.0 --optim=SGD --lr_sche=lambda_epoch --lr=0.1 --wd=0.0005 --embedding=ResNet12 --head=R2D2 --kway=5 --trshot=5 --trquery=6 --vshot=1 --vquery=15 --teshot=1 --tequery=15 --seed=0
+python meta_e.py --dataset=CIFAR_FS --mode=ens_testac --epochs=60 --task_aug Rot90 --rot90_p=0.5 --feat_aug=norm \
+--start_epoch=0 -es=8000 -b=8 -pn=8 --lossf=cross_entropy --eps=0.0 --optim=SGD --lr_sche=lambda_epoch \
+--lr=0.1 --wd=0.0005 --embedding=ResNet12 --head=R2D2 --kway=5 --trshot=5 --trquery=6 --vshot=1 --vquery=15 \
+--teshot=1 --tequery=15 --seed=0
 ```
 
 
