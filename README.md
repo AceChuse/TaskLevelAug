@@ -45,6 +45,9 @@ Automated training R2D2 on 5-way 5-shot 6-query and testing on 5-way 5-shot and 
 $ python mini_auto.py
 ```
 
+#### Result
+The average accuracies (\%) with 95\% confidence intervals on CIFAR-FS. $^*$CIFAR-FS results from \cite{bertinetto2018meta}. $^\dagger$Result from \cite{lee2019meta}.
+
 
 ### Manual Operation
 #### CIFAR-FS
