@@ -3,7 +3,7 @@ A data-augmentation method for meta-learning
 
 ### Abstract
 
-Data augmentation is one of the most effective approaches for improving the accuracy of modern machine learning models, and it is also indispensable to train a deep model for meta-learning. In this paper, we introduce a task augmentation method by rotating, which increases the number of classes by rotating the original images 90, 180 and 270 degrees, different from traditional augmentation methods which increase the number of images. With a larger amount of classes, we can sample more diverse task instances during training. Therefore, task augmentation by rotating allows us to train a deep network by meta-learning methods with little over-fitting. Experimental results show that our approach is better than the rotation for increasing the number of images and achieves state-of-the-art performance on miniImageNet, CIFAR-FS, and FC100 few-shot learning benchmarks. The code is available on \url{www.github.com/AceChuse/TaskLevelAug}.
+Data augmentation is one of the most effective approaches for improving the accuracy of modern machine learning models, and it is also indispensable to train a deep model for meta-learning. In this paper, we introduce a task augmentation method by rotating, which increases the number of classes by rotating the original images 90, 180 and 270 degrees, different from traditional augmentation methods which increase the number of images. With a larger amount of classes, we can sample more diverse task instances during training. Therefore, task augmentation by rotating allows us to train a deep network by meta-learning methods with little over-fitting. Experimental results show that our approach is better than the rotation for increasing the number of images and achieves state-of-the-art performance on miniImageNet, CIFAR-FS, and FC100 few-shot learning benchmarks. 
 
 ### Dependencies
 This code requires the following:
@@ -20,6 +20,47 @@ This code requires the following:
     cd TaskLevelAug
     ```
 2. Download and decompress dataset files: [**miniImageNet**](https://drive.google.com/file/d/1fJAK5WZTjerW7EWHHQAR9pRJVNg1T1Y7/view?usp=sharing) (courtesy of [**Spyros Gidaris**](https://github.com/gidariss/FewShotWithoutForgetting)), [**FC100**](https://drive.google.com/file/d/1_ZsLyqI487NRDQhwvI7rg86FK3YAZvz1/view?usp=sharing), [**CIFAR-FS**](https://drive.google.com/file/d/1GjGMI0q3bgcpcB_CjI40fX54WgLPuTpS/view?usp=sharing)
+
+3. For each dataset loader, specify the path to the directory. For example, in TaskLevelAugGithub/metadatas/mini_imagenet.py line 9:
+    ```python
+    _MINI_IMAGENET_DATASET_DIR = filepath + '/DataSets/miniImageNet_numpy'
+    ```
+
+### CIFAR-FS
+
+#### Training
+To train R2D2 on 5-way 5-shot 6-query train set, and to test on 5-way 5-shot 15-query validation set.
+```bash
+python meta_e.py --dataset=CIFAR_FS --mode=train --epochs=60 --task_aug Rot90 --rot90_p=0.5 --feat_aug=norm --start_epoch=0 -es=8000 -b=8 -pn=8 --lossf=cross_entropy --eps=0.0 --optim=SGD --lr_sche=lambda_epoch --lr=0.1 --wd=0.0005 --embedding=ResNet12 --head=R2D2 --kway=5 --trshot=5 --trquery=6 --vshot=5 --vquery=15 --teshot=1 --tequery=15 --seed=0
+```
+
+#### Testing 
+To test R2D2 on 5-way 5-shot 15-query test set.
+```bash
+python meta_e.py --dataset=CIFAR_FS --mode=ens_test --epochs=60 --task_aug Rot90 --rot90_p=0.5 --feat_aug=norm --start_epoch=0 -es=8000 -b=8 -pn=8 --lossf=cross_entropy --eps=0.0 --optim=SGD --lr_sche=lambda_epoch --lr=0.1 --wd=0.0005 --embedding=ResNet12 --head=R2D2 --kway=5 --trshot=5 --trquery=6 --vshot=5 --vquery=15 --teshot=5 --tequery=15 --seed=0
+```
+
+To test R2D2 on 5-way 1-shot 15-query test set.
+```bash
+python meta_e.py --dataset=CIFAR_FS --mode=ens_test --epochs=60 --task_aug Rot90 --rot90_p=0.5 --feat_aug=norm --start_epoch=0 -es=8000 -b=8 -pn=8 --lossf=cross_entropy --eps=0.0 --optim=SGD --lr_sche=lambda_epoch --lr=0.1 --wd=0.0005 --embedding=ResNet12 --head=R2D2 --kway=5 --trshot=5 --trquery=6 --vshot=1 --vquery=15 --teshot=1 --tequery=15 --seed=0
+```
+
+#### Retraining
+To train R2D2 on 5-way 5-shot 6-query train set and validation set.
+```bash
+python meta_e.py --dataset=CIFAR_FS --mode=final --epochs=60 --task_aug Rot90 --rot90_p=0.5 --feat_aug=norm --start_epoch=0 -es=8000 -b=8 -pn=8 --lossf=cross_entropy --eps=0.0 --optim=SGD --lr_sche=lambda_epoch --lr=0.1 --wd=0.0005 --embedding=ResNet12 --head=R2D2 --kway=5 --trshot=5 --trquery=6 --vshot=5 --vquery=15 --teshot=1 --tequery=15 --seed=0
+```
+
+#### Retesting
+To test R2D2 on 5-way 5-shot 15-query test set.
+```bash
+python meta_e.py --dataset=CIFAR_FS --mode=ens_testac --epochs=60 --task_aug Rot90 --rot90_p=0.5 --feat_aug=norm --start_epoch=0 -es=8000 -b=8 -pn=8 --lossf=cross_entropy --eps=0.0 --optim=SGD --lr_sche=lambda_epoch --lr=0.1 --wd=0.0005 --embedding=ResNet12 --head=R2D2 --kway=5 --trshot=5 --trquery=6 --vshot=5 --vquery=15 --teshot=5 --tequery=15 --seed=0
+```
+
+To test R2D2 on 5-way 1-shot 15-query test set.
+```bash
+python meta_e.py --dataset=CIFAR_FS --mode=ens_testac --epochs=60 --task_aug Rot90 --rot90_p=0.5 --feat_aug=norm --start_epoch=0 -es=8000 -b=8 -pn=8 --lossf=cross_entropy --eps=0.0 --optim=SGD --lr_sche=lambda_epoch --lr=0.1 --wd=0.0005 --embedding=ResNet12 --head=R2D2 --kway=5 --trshot=5 --trquery=6 --vshot=1 --vquery=15 --teshot=1 --tequery=15 --seed=0
+```
 
 
 
