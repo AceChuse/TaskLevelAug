@@ -50,10 +50,10 @@ The average accuracies (\%) with 95\% confidence intervals on CIFAR-FS.
 
 |Method | 1-shot| 5-shot |
 | -----   | -----  | ----  |
-|MAML |  58.9 | 71.5 |
-|R2-D2 |  65.3 | 79.4 |
-|ProtoNets |  72.2 | 83.5 |
-|M-SVM |  72.8 | 85.0 |
+|MAML[1] |  58.9 | 71.5 |
+|R2-D2[2] |  65.3 | 79.4 |
+|ProtoNets[3] |  72.2 | 83.5 |
+|M-SVM[4] |  72.8 | 85.0 |
 |M-SVM (best) (our) |  76.75 | **88.38** |
 |R2-D2 (best) (our) |  **77.66** | 88.33 |
 
@@ -61,10 +61,10 @@ The average accuracies (\%) with 95\% confidence intervals on FC100.
 
 |Method | 1-shot| 5-shot |
 | -----   | -----  | ----  |
-|TADAM |  40.1 | 56.1 |
-|ProtoNets |  37.5 | 52.5 |
-|MTL |  45.1 | 57.6 |
-|M-SVM |  47.2 | 62.5 |
+|TADAM[5] |  40.1 | 56.1 |
+|ProtoNets[3] |  37.5 | 52.5 |
+|MTL[6] |  45.1 | 57.6 |
+|M-SVM[4] |  47.2 | 62.5 |
 |M-SVM (best) (our) |  49.77 | 67.17 |
 |R2-D2 (best) (our) |  **51.35** | **67.66** |
 
@@ -72,11 +72,11 @@ The average accuracies (\%) with 95\% confidence intervals on miniImageNet.
 
 |Method | 1-shot| 5-shot |
 | -----   | -----  | ----  |
-| |  56.20 | 73.00 |
-|TADAM |  58.50 | 76.70 |
-|LEO |  61.76 | 77.59 |
-|ProtoNets |  59.25 | 75.60 |
-|M-SVM |  64.09 | 80.00 |
+|[7] |  56.20 | 73.00 |
+|TADAM[5] |  58.50 | 76.70 |
+|LEO[8] |  61.76 | 77.59 |
+|ProtoNets[3] |  59.25 | 75.60 |
+|M-SVM[4] |  64.09 | 80.00 |
 |M-SVM (best) (our) |  65.38 | **82.13** |
 |R2-D2 (best) (our) |  **65.95** | 81.96 |
 
@@ -244,3 +244,14 @@ python meta_e.py --dataset=miniImageNet --mode=ens_testac --epochs=60 --task_aug
 ## Acknowledgments
 
 This code is based on the implementations of [**Prototypical Networks**](https://github.com/cyvius96/prototypical-network-pytorch),  [**Dynamic Few-Shot Visual Learning without Forgetting**](https://github.com/gidariss/FewShotWithoutForgetting), [**DropBlock**](https://github.com/miguelvr/dropblock), [**qpth**](https://github.com/locuslab/qpth), and [**MetaOptNet**](https://github.com/kjunelee/MetaOptNet).
+
+## References
+[1] Chelsea Finn, Pieter Abbeel, and Sergey Levine. Model-agnostic meta-learning for fast adaptation of deep networks. In Proceedings of the 34th International Conference on Machine Learning-Volume 70, pages 1126–1135. JMLR. org, 2017.
+[2] Luca Bertinetto, Joao F Henriques, Philip HS Torr, and Andrea Vedaldi. Meta-learning with differentiable closed-form solvers. arXiv preprint arXiv:1805.08136, 2018.
+[3] Jake Snell, Kevin Swersky, and Richard Zemel. Prototypical networks for few-shot learning. In Advances in Neural Information Processing Systems, pages 4077–4087, 2017.
+[4]  Kwonjoon Lee, Subhransu Maji, Avinash Ravichandran, and Stefano Soatto. Meta-learning with differentiable convex op-
+timization. In Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition, pages 10657–10665, 2019.
+[5] Boris Oreshkin, Pau Rodr´ıguez López, and Alexandre Lacoste. Tadam: Task dependent adaptive metric for improved few-shot learning. In Advances in Neural Information Processing Systems, pages 721–731, 2018.
+[6] Qianru Sun, Yaoyao Liu, Tat-Seng Chua, and Bernt Schiele. Meta-transfer learning for few-shot learning. In Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition, pages 403–412, 2019.
+[7] Spyros Gidaris and Nikos Komodakis. Dynamic few-shot visual learning without forgetting. In Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition, pages 4367–4375, 2018.
+[8] Andrei A Rusu, Dushyant Rao, Jakub Sygnowski, Oriol Vinyals, Razvan Pascanu, Simon Osindero, and Raia Hadsell. Meta-learning with latent embedding optimization. arXiv preprint arXiv:1807.05960, 2018.
