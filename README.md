@@ -26,13 +26,29 @@ This code requires the following:
     _MINI_IMAGENET_DATASET_DIR = filepath + '/DataSets/miniImageNet_numpy'
     ```
 
-### CIFAR-FS
+### Automated training and testing
+#### CIFAR-FS
 Automated training R2D2 on 5-way 5-shot 6-query and testing on 5-way 5-shot and 5-way 1-shot.
 ```bash
 $ python CIFAR_FS_auto.py
 ```
 
-#### Training
+#### FC100
+Automated training R2D2 on 5-way 5-shot 6-query and testing on 5-way 5-shot and 5-way 1-shot.
+```bash
+$ python FC100_auto.py
+```
+
+#### MiniImageNet
+Automated training R2D2 on 5-way 5-shot 6-query and testing on 5-way 5-shot and 5-way 1-shot.
+```bash
+$ python mini_auto.py
+```
+
+
+### Manual Operation
+#### CIFAR-FS
+Training:
 To train R2D2 on 5-way 5-shot 6-query train set, and to test on 5-way 5-shot 15-query validation set.
 ```bash
 python meta_e.py --dataset=CIFAR_FS --mode=train --epochs=60 --task_aug Rot90 --rot90_p=0.5 \ 
@@ -41,7 +57,7 @@ python meta_e.py --dataset=CIFAR_FS --mode=train --epochs=60 --task_aug Rot90 --
 --trquery=6 --vshot=5 --vquery=15 --teshot=1 --tequery=15 --seed=0
 ```
 
-#### Testing 
+Testing:
 To test R2D2 on 5-way 5-shot 15-query test set.
 ```bash
 python meta_e.py --dataset=CIFAR_FS --mode=ens_test --epochs=60 --task_aug Rot90 --rot90_p=0.5 \
@@ -58,7 +74,7 @@ python meta_e.py --dataset=CIFAR_FS --mode=ens_test --epochs=60 --task_aug Rot90
 --trquery=6 --vshot=1 --vquery=15 --teshot=1 --tequery=15 --seed=0
 ```
 
-#### Retraining
+Retraining:
 To train R2D2 on 5-way 5-shot 6-query train set and validation set.
 ```bash
 python meta_e.py --dataset=CIFAR_FS --mode=final --epochs=60 --task_aug Rot90 --rot90_p=0.5 \
@@ -67,7 +83,7 @@ python meta_e.py --dataset=CIFAR_FS --mode=final --epochs=60 --task_aug Rot90 --
 --trquery=6 --vshot=5 --vquery=15 --teshot=1 --tequery=15 --seed=0
 ```
 
-#### Retesting
+Retesting:
 To test R2D2 on 5-way 5-shot 15-query test set.
 ```bash
 python meta_e.py --dataset=CIFAR_FS --mode=ens_testac --epochs=60 --task_aug Rot90 --rot90_p=0.5 \
@@ -84,13 +100,8 @@ python meta_e.py --dataset=CIFAR_FS --mode=ens_testac --epochs=60 --task_aug Rot
 --trquery=6 --vshot=1 --vquery=15 --teshot=1 --tequery=15 --seed=0
 ```
 
-### FC100
-Automated training R2D2 on 5-way 5-shot 6-query and testing on 5-way 5-shot and 5-way 1-shot.
-```bash
-$ python FC100_auto.py
-```
-
-#### Training
+#### FC100
+Training:
 To train R2D2 on 5-way 5-shot 6-query train set, and to test on 5-way 5-shot 15-query validation set.
 ```bash
 python meta_e.py --dataset=FC100 --mode=train --epochs=60 --task_aug Rot90 --rot90_p=0.25 \
@@ -99,7 +110,7 @@ python meta_e.py --dataset=FC100 --mode=train --epochs=60 --task_aug Rot90 --rot
 --trquery=6 --vshot=5 --vquery=15 --teshot=1 --tequery=15 --seed=0
 ```
 
-#### Testing 
+Testing: 
 To test R2D2 on 5-way 5-shot 15-query test set.
 ```bash
 python meta_e.py --dataset=FC100 --mode=ens_test --epochs=60 --task_aug Rot90 --rot90_p=0.25 \
@@ -116,7 +127,7 @@ python meta_e.py --dataset=FC100 --mode=ens_test --epochs=60 --task_aug Rot90 --
 --trquery=6 --vshot=1 --vquery=15 --teshot=1 --tequery=15 --seed=0
 ```
 
-#### Retraining
+Retraining:
 To train R2D2 on 5-way 5-shot 6-query train set and validation set.
 ```bash
 python meta_e.py --dataset=FC100 --mode=final --epochs=60 --task_aug Rot90 --rot90_p=0.25 \
@@ -125,7 +136,7 @@ python meta_e.py --dataset=FC100 --mode=final --epochs=60 --task_aug Rot90 --rot
 --trquery=6 --vshot=5 --vquery=15 --teshot=1 --tequery=15 --seed=0
 ```
 
-#### Retesting
+Retesting:
 To test R2D2 on 5-way 5-shot 15-query test set.
 ```bash
 python meta_e.py --dataset=FC100 --mode=ens_testac --epochs=60 --task_aug Rot90 --rot90_p=0.25 \
@@ -142,13 +153,8 @@ python meta_e.py --dataset=FC100 --mode=ens_testac --epochs=60 --task_aug Rot90 
 --trquery=6 --vshot=1 --vquery=15 --teshot=1 --tequery=15 --seed=0
 ```
 
-### MiniImageNet
-Automated training R2D2 on 5-way 5-shot 6-query and testing on 5-way 5-shot and 5-way 1-shot.
-```bash
-$ python mini_auto.py
-```
-
-#### Training
+#### MiniImageNet
+Training:
 To train R2D2 on 5-way 5-shot 6-query train set, and to test on 5-way 5-shot 15-query validation set.
 ```bash
 python meta_e.py --dataset=miniImageNet --mode=train --epochs=60 --task_aug Rot90 --rot90_p=0.25 \
@@ -157,7 +163,7 @@ python meta_e.py --dataset=miniImageNet --mode=train --epochs=60 --task_aug Rot9
 --trquery=6 --vshot=1 --vquery=15 --teshot=1 --tequery=15 --seed=0
 ```
 
-#### Testing 
+Testing:
 To test R2D2 on 5-way 5-shot 15-query test set.
 ```bash
 python meta_e.py --dataset=miniImageNet --mode=ens_test --epochs=60 --task_aug Rot90 --rot90_p=0.25 \
@@ -174,7 +180,7 @@ python meta_e.py --dataset=miniImageNet --mode=ens_test --epochs=60 --task_aug R
 --trquery=6 --vshot=1 --vquery=15 --teshot=1 --tequery=15 --seed=0
 ```
 
-#### Retraining
+Retraining:
 To train R2D2 on 5-way 5-shot 6-query train set and validation set.
 ```bash
 python meta_e.py --dataset=miniImageNet --mode=final --epochs=60 --task_aug Rot90 --rot90_p=0.25 \
@@ -183,7 +189,7 @@ python meta_e.py --dataset=miniImageNet --mode=final --epochs=60 --task_aug Rot9
 --trquery=6 --vshot=5 --vquery=15 --teshot=1 --tequery=15 --seed=0
 ```
 
-#### Retesting
+Retesting:
 To test R2D2 on 5-way 5-shot 15-query test set.
 ```bash
 python meta_e.py --dataset=miniImageNet --mode=ens_testac --epochs=60 --task_aug Rot90 --rot90_p=0.25 \
